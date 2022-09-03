@@ -1,0 +1,34 @@
+[user]
+	email = jon@ashcroft.dev
+	name = Jon Ashcroft
+
+[alias]
+  # example = "!f() { git foo }; f`"
+
+	# Commit all changes.
+	add-all = !git add . && git commit -m
+
+  # List branches.
+  # Includes formatted list and most recent commit.
+  br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+
+	# Switch to a branch, creating it if it doesn'y exist.
+  # Example: `cob feature/123`
+	cob = git checkout -b
+
+  # Delete a branch.
+  del = branch -D
+
+  # Delete any local branches that no longer exist on remote.
+	delete-local = "!git fetch && git branch -vv | grep ': gone]'|  grep -v '\\*' | awk '{ print $1; }' | xargs -r git branch -d"
+
+	# Delete local branches that have already been merged with main.
+  # Excludes common branches that we don't want to delete.
+  delete-merged = "!git branch --merged | grep  -v '\\*\\|master\\|main\\|develop\\|release\\|prerelease' | xargs -n 1 -r git branch -d"
+
+  # Bulk delete local branches that follow a certain pattern.
+  # Example: `delete-pattern feature/*` deletes all branches that start with `feature/*`
+  delete-pattern = "!f() { git branch -D `git branch --list '\"$1\"' }; f`"
+
+	# Shortcut to push to the current branch and set it to track the upstream branch.
+	publish = !git push -u origin $(git get-branch)
