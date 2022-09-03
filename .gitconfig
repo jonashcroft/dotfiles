@@ -5,14 +5,14 @@
 [alias]
   # example = "!f() { git foo }; f`"
 
-	# Commit all changes.
-	add-all = !git add . && git commit -m
+  # Commit all changes.
+  add-all = !git add . && git commit -m
 
   # List branches.
   # Includes formatted list and most recent commit.
   br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
 
-	# Switch to a branch, creating it if it doesn'y exist.
+  # Switch to a branch, creating it if it doesn'y exist.
   # Example: `cob feature/123`
   cob = git checkout -b
 
@@ -30,5 +30,5 @@
   # Example: `delete-pattern feature/*` deletes all branches that start with `feature/*`
   delete-pattern = "!f() { git branch -D `git branch --list '\"$1\"' }; f`"
 
-	# Shortcut to push to the current branch and set it to track the upstream branch.
-	publish = !git push -u origin $(git get-branch)
+  # Shortcut to push to the current branch and set it to track the upstream branch.
+  publish = !git push -u origin $(git get-branch)
