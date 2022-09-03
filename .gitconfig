@@ -22,7 +22,7 @@
   # Delete any local branches that no longer exist on remote.
   delete-local = "!git fetch && git branch -vv | grep ': gone]'|  grep -v '\\*' | awk '{ print $1; }' | xargs -r git branch -d"
 
-	# Delete local branches that have already been merged with main.
+  # Delete local branches that have already been merged with main.
   # Excludes common branches that we don't want to delete.
   delete-merged = "!git branch --merged | grep  -v '\\*\\|master\\|main\\|develop\\|release\\|prerelease' | xargs -n 1 -r git branch -d"
 
